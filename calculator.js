@@ -50,81 +50,6 @@ equalBtn.addEventListener("click", e => {
     solve(firstParam, oper, secondParam);
 })
 
-document.addEventListener("keydown", e => {
-    if (e.key == "+") {
-        if (solution) return;
-        if (!regex.test(operator.textContent)) {
-            operator.append(e.key);
-            firstArg.append(" ");
-            firstArg.append(operator.textContent);
-        }
-    }
-    if (e.key == "/") {
-        if (solution) return;
-        if (!regex.test(operator.textContent)) {
-            operator.append(e.key);
-            firstArg.append(" ");
-            firstArg.append(operator.textContent);
-        }
-    }
-    if (e.key == "-") {
-        if (solution) return;
-        if (!regex.test(operator.textContent)) {
-            operator.append(e.key);
-            firstArg.append(" ");
-            firstArg.append(operator.textContent);
-        }
-    }
-    if (e.key == "*") {
-        if (solution) return;
-        if (!regex.test(operator.textContent)) {
-            operator.append(e.key);
-            firstArg.append(" ");
-            firstArg.append(operator.textContent);
-        }
-    }
-    if (e.key === ".") {
-        if (!firstArg.textContent.includes(".") && operator.textContent === "") {
-            firstArg.append(decimalBtn.textContent);
-        } else if (!secondArg.textContent.includes(".") && operator.textContent) {
-            secondArg.append(decimalBtn.textContent);
-        }
-    }
-    if (digits.test(e.key)) {
-        if (firstArg.innerHTML === "0" || solution) {
-            firstArg.innerHTML = "";
-            solution = false;
-        }
-        if (operator.textContent === "" && firstArg.clientWidth + 40 < screen.offsetWidth) {
-            firstArg.append(e.key);
-        } else if (operator.textContent && secondArg.clientWidth + 40 < screen.offsetWidth) {
-            secondArg.append(e.key);
-        }
-    }
-    if (e.code === "Enter") {
-        let firstParam = firstArg.textContent.split(" ")[0];
-        let oper = operator.textContent;
-        let secondParam = secondArg.textContent;
-        if (secondParam == "") return;
-        solve(firstParam, oper, secondParam);
-    }
-
-    if (e.code === "Backspace") {
-        if ((operator.textContent || firstArg.textContent.length > 1) && secondArg.textContent == "") {
-            operator.innerHTML = "";
-            let remaining = firstArg.textContent.slice(0, firstArg.textContent.length - 1).trim();
-            firstArg.innerHTML = "";
-            firstArg.innerHTML = remaining;
-        } else if (firstArg.textContent.length === 1 && secondArg.textContent == "") {
-            firstArg.innerHTML = "0";
-        } else if (secondArg.textContent) {
-            let remaining = secondArg.textContent.slice(0, secondArg.textContent.length - 1).trim();
-            secondArg.innerHTML = "";
-            secondArg.innerHTML = remaining;
-        }
-    }
-})
-
 function solve(first, oper, second) {
     switch (oper) {
         case "-":
@@ -198,4 +123,81 @@ acBtn.addEventListener("click", function () {
     firstArg.innerHTML = 0;
     secondArg.innerHTML = "";
     operator.textContent = "";
+})
+
+//Keyborad Functionaly: allows user to type rather than clicking button
+
+document.addEventListener("keydown", e => {
+    if (e.key == "+") {
+        if (solution) return;
+        if (!regex.test(operator.textContent)) {
+            operator.append(e.key);
+            firstArg.append(" ");
+            firstArg.append(operator.textContent);
+        }
+    }
+    if (e.key == "/") {
+        if (solution) return;
+        if (!regex.test(operator.textContent)) {
+            operator.append(e.key);
+            firstArg.append(" ");
+            firstArg.append(operator.textContent);
+        }
+    }
+    if (e.key == "-") {
+        if (solution) return;
+        if (!regex.test(operator.textContent)) {
+            operator.append(e.key);
+            firstArg.append(" ");
+            firstArg.append(operator.textContent);
+        }
+    }
+    if (e.key == "*") {
+        if (solution) return;
+        if (!regex.test(operator.textContent)) {
+            operator.append(e.key);
+            firstArg.append(" ");
+            firstArg.append(operator.textContent);
+        }
+    }
+    if (e.key === ".") {
+        if (!firstArg.textContent.includes(".") && operator.textContent === "") {
+            firstArg.append(decimalBtn.textContent);
+        } else if (!secondArg.textContent.includes(".") && operator.textContent) {
+            secondArg.append(decimalBtn.textContent);
+        }
+    }
+    if (digits.test(e.key)) {
+        if (firstArg.innerHTML === "0" || solution) {
+            firstArg.innerHTML = "";
+            solution = false;
+        }
+        if (operator.textContent === "" && firstArg.clientWidth + 40 < screen.offsetWidth) {
+            firstArg.append(e.key);
+        } else if (operator.textContent && secondArg.clientWidth + 40 < screen.offsetWidth) {
+            secondArg.append(e.key);
+        }
+    }
+    if (e.code === "Enter") {
+        let firstParam = firstArg.textContent.split(" ")[0];
+        let oper = operator.textContent;
+        let secondParam = secondArg.textContent;
+        if (secondParam == "") return;
+        solve(firstParam, oper, secondParam);
+    }
+
+    if (e.code === "Backspace") {
+        if ((operator.textContent || firstArg.textContent.length > 1) && secondArg.textContent == "") {
+            operator.innerHTML = "";
+            let remaining = firstArg.textContent.slice(0, firstArg.textContent.length - 1).trim();
+            firstArg.innerHTML = "";
+            firstArg.innerHTML = remaining;
+        } else if (firstArg.textContent.length === 1 && secondArg.textContent == "") {
+            firstArg.innerHTML = "0";
+        } else if (secondArg.textContent) {
+            let remaining = secondArg.textContent.slice(0, secondArg.textContent.length - 1).trim();
+            secondArg.innerHTML = "";
+            secondArg.innerHTML = remaining;
+        }
+    }
 })
