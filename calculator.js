@@ -14,7 +14,7 @@ let digits = /[0-9]/;
 let solution = false;
 
 numberBtns.forEach(n => n.addEventListener("click", e => {
-    if (firstArg.innerHTML === "0" || solution) {
+    if (firstArg.innerHTML === "0" || (solution && operator.textContent === "")) {
         firstArg.innerHTML = "";
         solution = false;
     }
@@ -34,7 +34,7 @@ decimalBtn.addEventListener("click", e => {
 });
 
 operationBtn.forEach(n => n.addEventListener("click", e => {
-    if (solution) return;
+    // if (solution) return;
     if (!regex.test(operator.textContent)) {
         operator.append(n.textContent);
         firstArg.append(" ");
@@ -55,6 +55,8 @@ function solve(first, oper, second) {
         case "-":
             if (first < 1 || second < 1) {
                 firstArg.innerHTML = `${((Number(first) - Number(second)).toFixed(2))}`;
+                operator.textContent = "";
+                secondArg.textContent = "";
             } else {
                 firstArg.innerHTML = `${((Number(first) - Number(second)).toPrecision(2))}`;
                 operator.textContent = "";
@@ -65,6 +67,8 @@ function solve(first, oper, second) {
         case "+":
             if (first < 1 || second < 1) {
                 firstArg.innerHTML = `${((Number(first) + Number(second)).toFixed(2))}`;
+                operator.textContent = "";
+                secondArg.textContent = "";
             } else {
                 firstArg.innerHTML = `${((Number(first) + Number(second)))}`;
                 operator.textContent = "";
@@ -75,6 +79,8 @@ function solve(first, oper, second) {
         case "/":
             if (first < 1 || second < 1) {
                 firstArg.innerHTML = `${((Number(first) / Number(second)).toFixed(2))}`;
+                operator.textContent = "";
+                secondArg.textContent = "";
             } else {
                 firstArg.innerHTML = `${((Number(first) / Number(second)).toPrecision(5))}`;
                 operator.textContent = "";
@@ -85,6 +91,8 @@ function solve(first, oper, second) {
         case "*":
             if (first < 1 || second < 1) {
                 firstArg.innerHTML = `${((Number(first) * Number(second)).toFixed(2))}`;
+                operator.textContent = "";
+                secondArg.textContent = "";
             } else {
                 firstArg.innerHTML = `${((Number(first) * Number(second)))}`;
                 operator.textContent = "";
