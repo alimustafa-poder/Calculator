@@ -131,7 +131,7 @@ function solve(first, oper, second) {
             if (first < 1 || second < 1) {
                 firstArg.innerHTML = `${((Number(first) - Number(second)).toFixed(2))}`;
             } else {
-                firstArg.innerHTML = `${((Number(first) - Number(second)))}`;
+                firstArg.innerHTML = `${((Number(first) - Number(second)).toPrecision(2))}`;
                 operator.textContent = "";
                 secondArg.textContent = "";
             }
