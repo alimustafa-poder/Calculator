@@ -93,6 +93,23 @@ document.addEventListener("keydown", e => {
         if (secondParam == "") return;
         solve(firstParam, oper, secondParam);
     }
+
+    if (e.code === "Backspace"){
+        if ((operator.textContent || firstArg.textContent.length > 1) && secondArg.textContent == ""){
+            operator.innerHTML = "";
+            let remaining = firstArg.textContent.slice(0, firstArg.textContent.length-1).trim();
+            firstArg.innerHTML = "";
+            firstArg.innerHTML = remaining;
+        }
+        else if (firstArg.textContent.length === 1 && secondArg.textContent == ""){
+            firstArg.innerHTML = "0";
+        }
+        else if (secondArg.textContent){
+            let remaining = secondArg.textContent.slice(0, secondArg.textContent.length-1).trim();
+            secondArg.innerHTML = "";
+            secondArg.innerHTML = remaining;
+        }
+    }
 })
 
 function solve(first, oper, second) {
