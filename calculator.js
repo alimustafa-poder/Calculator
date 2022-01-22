@@ -11,10 +11,12 @@ let equalBtn = document.querySelector(".equal");
 let operationBtn = document.querySelectorAll(".operation");
 let regex = /[+-/*]/;
 let digits = /[0-9]/;
+let solution = false;
 
 numberBtns.forEach(n => n.addEventListener("click", e => {
-    if (firstArg.innerHTML === "0") {
+    if (firstArg.innerHTML === "0" || solution) {
         firstArg.innerHTML = "";
+        solution = false;
     }
     if (operator.textContent === "" && firstArg.clientWidth + 40 < screen.offsetWidth) {
         firstArg.append(n.textContent);
@@ -32,6 +34,7 @@ decimalBtn.addEventListener("click", e => {
 });
 
 operationBtn.forEach(n => n.addEventListener("click", e => {
+    if (solution) return;
     if (!regex.test(operator.textContent)) {
         operator.append(n.textContent);
         firstArg.append(" ");
@@ -49,6 +52,7 @@ equalBtn.addEventListener("click", e => {
 
 document.addEventListener("keydown", e => {
     if (e.key == "+") {
+        if (solution) return;
         if (!regex.test(operator.textContent)) {
             operator.append(e.key);
             firstArg.append(" ");
@@ -56,6 +60,7 @@ document.addEventListener("keydown", e => {
         }
     }
     if (e.key == "/") {
+        if (solution) return;
         if (!regex.test(operator.textContent)) {
             operator.append(e.key);
             firstArg.append(" ");
@@ -63,6 +68,7 @@ document.addEventListener("keydown", e => {
         }
     }
     if (e.key == "-") {
+        if (solution) return;
         if (!regex.test(operator.textContent)) {
             operator.append(e.key);
             firstArg.append(" ");
@@ -70,6 +76,7 @@ document.addEventListener("keydown", e => {
         }
     }
     if (e.key == "*") {
+        if (solution) return;
         if (!regex.test(operator.textContent)) {
             operator.append(e.key);
             firstArg.append(" ");
@@ -77,8 +84,9 @@ document.addEventListener("keydown", e => {
         }
     }
     if (digits.test(e.key)) {
-        if (firstArg.innerHTML === "0") {
+        if (firstArg.innerHTML === "0" || solution) {
             firstArg.innerHTML = "";
+            solution = false;
         }
         if (operator.textContent === "" && firstArg.clientWidth + 40 < screen.offsetWidth) {
             firstArg.append(e.key);
@@ -115,24 +123,28 @@ document.addEventListener("keydown", e => {
 function solve(first, oper, second) {
     switch (oper) {
         case "-":
-            firstArg.innerHTML = `${((Number(first) * 10 - Number(second) * 10) / 10).toFixed(1)}`;
+            firstArg.innerHTML = `${((Number(first) - Number(second)).toFixed(0))}`;
             operator.textContent = "";
             secondArg.textContent = "";
+            solution = true;
             break;
         case "+":
-            firstArg.innerHTML = `${((Number(first) * 10 + Number(second) * 10) / 10).toFixed(1)}`;
+            firstArg.innerHTML = `${((Number(first) + Number(second)).toFixed(0))}`;
             operator.textContent = "";
             secondArg.textContent = "";
+            solution = true;
             break;
         case "/":
-            firstArg.innerHTML = `${((Number(first) * 10 / Number(second) * 10) / 10).toFixed(1)}`;
+            firstArg.innerHTML = `${(((Number(first) / Number(second)).toFixed(0)))}`;
             operator.textContent = "";
             secondArg.textContent = "";
+            solution = true;
             break;
         case "*":
-            firstArg.innerHTML = `${(((Number(first) * 10) * (Number(second) * 10))  / 100).toFixed(1)}`;
+            firstArg.innerHTML = `${(Number(first)) * (Number(second)).toFixed(0)}`;
             operator.textContent = "";
             secondArg.textContent = "";
+            solution = true;
             break;
     }
 }
