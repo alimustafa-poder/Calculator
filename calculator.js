@@ -136,32 +136,8 @@ acBtn.addEventListener("click", function () {
 //Keyborad Functionaly: allows user to type rather than clicking button
 
 document.addEventListener("keydown", e => {
-    if (e.key == "+") {
-        if (solution) return;
-        if (!regex.test(operator.textContent)) {
-            operator.append(e.key);
-            firstArg.append(" ");
-            firstArg.append(operator.textContent);
-        }
-    }
-    if (e.key == "/") {
-        if (solution) return;
-        if (!regex.test(operator.textContent)) {
-            operator.append(e.key);
-            firstArg.append(" ");
-            firstArg.append(operator.textContent);
-        }
-    }
-    if (e.key == "-") {
-        if (solution) return;
-        if (!regex.test(operator.textContent)) {
-            operator.append(e.key);
-            firstArg.append(" ");
-            firstArg.append(operator.textContent);
-        }
-    }
-    if (e.key == "*") {
-        if (solution) return;
+    if (regex.test(e.key)) {
+        // if (solution) return;
         if (!regex.test(operator.textContent)) {
             operator.append(e.key);
             firstArg.append(" ");
@@ -176,7 +152,7 @@ document.addEventListener("keydown", e => {
         }
     }
     if (digits.test(e.key)) {
-        if (firstArg.innerHTML === "0" || solution) {
+        if (firstArg.innerHTML === "0" || (solution && operator.textContent === "")) {
             firstArg.innerHTML = "";
             solution = false;
         }
