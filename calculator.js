@@ -38,16 +38,15 @@ operationBtn.forEach(n => n.addEventListener("click", e => {
         operator.append(n.textContent);
         firstArg.append(" ");
         firstArg.append(operator.textContent);
-    }
-    else if (n.textContent){
-    let firstParam = firstArg.textContent.split(" ")[0];
-    let oper = operator.textContent;
-    let secondParam = secondArg.textContent;
-    if (secondParam == "") return;
-    solve(firstParam, oper, secondParam);
-    operator.append(n.textContent);
-    firstArg.append(" ");
-    firstArg.append(n.textContent);
+    } else if (n.textContent) {
+        let firstParam = firstArg.textContent.split(" ")[0];
+        let oper = operator.textContent;
+        let secondParam = secondArg.textContent;
+        if (secondParam == "") return;
+        solve(firstParam, oper, secondParam);
+        operator.append(n.textContent);
+        firstArg.append(" ");
+        firstArg.append(n.textContent);
     }
 }))
 
