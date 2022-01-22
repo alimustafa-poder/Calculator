@@ -113,7 +113,7 @@ function solve(first, oper, second) {
             secondArg.textContent = "";
             break;
         case "*":
-            firstArg.innerHTML = `${((Number(first) * 10 * Number(second) * 10) / 10).toFixed(1)}`;
+            firstArg.innerHTML = `${(((Number(first) * 10) * (Number(second) * 10))  / 100).toFixed(1)}`;
             operator.textContent = "";
             secondArg.textContent = "";
             break;
