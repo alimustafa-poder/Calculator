@@ -83,6 +83,13 @@ document.addEventListener("keydown", e => {
             firstArg.append(operator.textContent);
         }
     }
+    if (e.key === ".") {
+        if (!firstArg.textContent.includes(".") && operator.textContent === "") {
+            firstArg.append(decimalBtn.textContent);
+        } else if (!secondArg.textContent.includes(".") && operator.textContent) {
+            secondArg.append(decimalBtn.textContent);
+        }
+    }
     if (digits.test(e.key)) {
         if (firstArg.innerHTML === "0" || solution) {
             firstArg.innerHTML = "";
@@ -102,18 +109,16 @@ document.addEventListener("keydown", e => {
         solve(firstParam, oper, secondParam);
     }
 
-    if (e.code === "Backspace"){
-        if ((operator.textContent || firstArg.textContent.length > 1) && secondArg.textContent == ""){
+    if (e.code === "Backspace") {
+        if ((operator.textContent || firstArg.textContent.length > 1) && secondArg.textContent == "") {
             operator.innerHTML = "";
-            let remaining = firstArg.textContent.slice(0, firstArg.textContent.length-1).trim();
+            let remaining = firstArg.textContent.slice(0, firstArg.textContent.length - 1).trim();
             firstArg.innerHTML = "";
             firstArg.innerHTML = remaining;
-        }
-        else if (firstArg.textContent.length === 1 && secondArg.textContent == ""){
+        } else if (firstArg.textContent.length === 1 && secondArg.textContent == "") {
             firstArg.innerHTML = "0";
-        }
-        else if (secondArg.textContent){
-            let remaining = secondArg.textContent.slice(0, secondArg.textContent.length-1).trim();
+        } else if (secondArg.textContent) {
+            let remaining = secondArg.textContent.slice(0, secondArg.textContent.length - 1).trim();
             secondArg.innerHTML = "";
             secondArg.innerHTML = remaining;
         }
@@ -123,44 +128,58 @@ document.addEventListener("keydown", e => {
 function solve(first, oper, second) {
     switch (oper) {
         case "-":
-            firstArg.innerHTML = `${((Number(first) - Number(second)).toFixed(0))}`;
-            operator.textContent = "";
-            secondArg.textContent = "";
+            if (first < 1 || second < 1) {
+                firstArg.innerHTML = `${((Number(first) - Number(second)).toFixed(2))}`;
+            } else {
+                firstArg.innerHTML = `${((Number(first) - Number(second)))}`;
+                operator.textContent = "";
+                secondArg.textContent = "";
+            }
             solution = true;
             break;
         case "+":
-            firstArg.innerHTML = `${((Number(first) + Number(second)).toFixed(0))}`;
-            operator.textContent = "";
-            secondArg.textContent = "";
+            if (first < 1 || second < 1) {
+                firstArg.innerHTML = `${((Number(first) + Number(second)).toFixed(2))}`;
+            } else {
+                firstArg.innerHTML = `${((Number(first) + Number(second)))}`;
+                operator.textContent = "";
+                secondArg.textContent = "";
+            }
             solution = true;
             break;
         case "/":
-            firstArg.innerHTML = `${(((Number(first) / Number(second)).toFixed(0)))}`;
-            operator.textContent = "";
-            secondArg.textContent = "";
+            if (first < 1 || second < 1) {
+                firstArg.innerHTML = `${((Number(first) / Number(second)).toFixed(2))}`;
+            } else {
+                firstArg.innerHTML = `${((Number(first) / Number(second)).toPrecision(5))}`;
+                operator.textContent = "";
+                secondArg.textContent = "";
+            }
             solution = true;
             break;
         case "*":
-            firstArg.innerHTML = `${(Number(first)) * (Number(second)).toFixed(0)}`;
-            operator.textContent = "";
-            secondArg.textContent = "";
+            if (first < 1 || second < 1) {
+                firstArg.innerHTML = `${((Number(first) * Number(second)).toFixed(2))}`;
+            } else {
+                firstArg.innerHTML = `${((Number(first) * Number(second)))}`;
+                operator.textContent = "";
+                secondArg.textContent = "";
+            }
             solution = true;
             break;
     }
 }
 
 backBtn.addEventListener("click", e => {
-    if ((operator.textContent || firstArg.textContent.length > 1) && secondArg.textContent == ""){
+    if ((operator.textContent || firstArg.textContent.length > 1) && secondArg.textContent == "") {
         operator.innerHTML = "";
-        let remaining = firstArg.textContent.slice(0, firstArg.textContent.length-1).trim();
+        let remaining = firstArg.textContent.slice(0, firstArg.textContent.length - 1).trim();
         firstArg.innerHTML = "";
         firstArg.innerHTML = remaining;
-    }
-    else if (firstArg.textContent.length === 1 && secondArg.textContent == ""){
+    } else if (firstArg.textContent.length === 1 && secondArg.textContent == "") {
         firstArg.innerHTML = "0";
-    }
-    else if (secondArg.textContent){
-        let remaining = secondArg.textContent.slice(0, secondArg.textContent.length-1).trim();
+    } else if (secondArg.textContent) {
+        let remaining = secondArg.textContent.slice(0, secondArg.textContent.length - 1).trim();
         secondArg.innerHTML = "";
         secondArg.innerHTML = remaining;
     }
