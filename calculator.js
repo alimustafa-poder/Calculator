@@ -14,7 +14,7 @@ let digits = /[0-9]/;
 let solution = false;
 
 numberBtns.forEach(n => n.addEventListener("click", e => {
-    if (firstArg.innerHTML === "0" || (solution && operator.textContent === "")) {
+    if (firstArg.innerHTML === "0" || (!!solution && operator.textContent === "")) {
         firstArg.innerHTML = "";
         solution = false;
     }
@@ -34,11 +34,20 @@ decimalBtn.addEventListener("click", e => {
 });
 
 operationBtn.forEach(n => n.addEventListener("click", e => {
-    // if (solution) return;
     if (!regex.test(operator.textContent)) {
         operator.append(n.textContent);
         firstArg.append(" ");
         firstArg.append(operator.textContent);
+    }
+    else if (n.textContent){
+    let firstParam = firstArg.textContent.split(" ")[0];
+    let oper = operator.textContent;
+    let secondParam = secondArg.textContent;
+    if (secondParam == "") return;
+    solve(firstParam, oper, secondParam);
+    operator.append(n.textContent);
+    firstArg.append(" ");
+    firstArg.append(n.textContent);
     }
 }))
 
@@ -137,7 +146,6 @@ acBtn.addEventListener("click", function () {
 
 document.addEventListener("keydown", e => {
     if (regex.test(e.key)) {
-        // if (solution) return;
         if (!regex.test(operator.textContent)) {
             operator.append(e.key);
             firstArg.append(" ");
