@@ -1,0 +1,76 @@
+.claculator {
+    display: grid;
+    grid-template-rows: 70px 1fr;
+    grid-gap: 35px 0;
+    margin: 0 auto;
+    border: 2px solid black;
+    width: 350px;
+    height: 370px;
+    border-radius: 27px;
+    padding: 12px 9px;
+    align-items: center;
+    background-color: #191a1c;
+}
+
+#screen {
+    background-color: #ffffff;
+    border-radius: 5px;
+    height: 75px;
+    min-width: 200px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+#funBtns {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    grid-template-rows: repeat(5, 30px);
+    grid-gap: 20px 40px;
+    justify-content: center;
+}
+
+button {
+    background-color: #191a1c;
+    color: white;
+    border: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 100%;
+}
+
+button:hover {
+    transform: translateY(-5px);
+    transition: 200ms ease-out;
+    background-color: white;
+    color: black;
+}
+
+.button-plus {
+    grid-row: span 2;
+}
+
+#screen{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    row-gap: 25px;
+    padding-top: 10px;
+    padding-right: 10px ;
+}
+.firstArg{
+    float: right;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    text-overflow: clip;
+}
+.secondArg{
+    float: right;
+    font-size: 25px;
+    font-weight: 900;
+    color: rgb(24, 22, 22);
+}
+
+.operator{
+    display: none;
+}
