@@ -58,55 +58,32 @@ equalBtn.addEventListener("click", e => {
     solve(firstParam, oper, secondParam);
 })
 
+function solution(first, oper, second){
+    if (first < 1 || second < 1) {
+        firstArg.innerHTML = `${((Number(first) - Number(second)))}`;
+        operator.textContent = "";
+        secondArg.textContent = "";
+    } else {
+        firstArg.innerHTML = `${((Number(first) - Number(second)))}`;
+        operator.textContent = "";
+        secondArg.textContent = "";
+    }
+    solution = true;
+}
+
 function solve(first, oper, second) {
     switch (oper) {
         case "-":
-            if (first < 1 || second < 1) {
-                firstArg.innerHTML = `${((Number(first) - Number(second)).toFixed(2))}`;
-                operator.textContent = "";
-                secondArg.textContent = "";
-            } else {
-                firstArg.innerHTML = `${((Number(first) - Number(second)).toPrecision(2))}`;
-                operator.textContent = "";
-                secondArg.textContent = "";
-            }
-            solution = true;
+            solution(first, oper, second);
             break;
         case "+":
-            if (first < 1 || second < 1) {
-                firstArg.innerHTML = `${((Number(first) + Number(second)).toFixed(2))}`;
-                operator.textContent = "";
-                secondArg.textContent = "";
-            } else {
-                firstArg.innerHTML = `${((Number(first) + Number(second)))}`;
-                operator.textContent = "";
-                secondArg.textContent = "";
-            }
-            solution = true;
+            solution(first, oper, second);
             break;
         case "/":
-            if (first < 1 || second < 1) {
-                firstArg.innerHTML = `${((Number(first) / Number(second)).toFixed(2))}`;
-                operator.textContent = "";
-                secondArg.textContent = "";
-            } else {
-                firstArg.innerHTML = `${((Number(first) / Number(second)).toPrecision(5))}`;
-                operator.textContent = "";
-                secondArg.textContent = "";
-            }
-            solution = true;
+            solution(first, oper, second);
             break;
         case "*":
-            if (first < 1 || second < 1) {
-                firstArg.innerHTML = `${((Number(first) * Number(second)).toFixed(2))}`;
-                operator.textContent = "";
-                secondArg.textContent = "";
-            } else {
-                firstArg.innerHTML = `${((Number(first) * Number(second)))}`;
-                operator.textContent = "";
-                secondArg.textContent = "";
-            }
-            solution = true;
+            solution(first, oper, second);
             break;
     }
 }
