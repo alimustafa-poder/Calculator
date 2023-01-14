@@ -43,7 +43,7 @@ operationBtn.forEach(n => n.addEventListener("click", e => {
         let oper = operator.textContent;
         let secondParam = secondArg.textContent;
         if (secondParam == "") return;
-        solve(firstParam, oper, secondParam);
+        sol(firstParam, oper, secondParam);
         operator.append(n.textContent);
         firstArg.append(" ");
         firstArg.append(n.textContent);
@@ -55,7 +55,7 @@ equalBtn.addEventListener("click", e => {
     let oper = operator.textContent;
     let secondParam = secondArg.textContent;
     if (secondParam == "") return;
-    solve(firstParam, oper, secondParam);
+    sol(firstParam, oper, secondParam);
 })
 
 const solObj = {
@@ -76,23 +76,6 @@ function sol(first, oper, second){
         secondArg.textContent = "";
     }
     solution = true;
-}
-
-function solve(first, oper, second) {
-    switch (oper) {
-        case "-":
-            sol(first, oper, second);
-            break;
-        case "+":
-            sol(first, oper, second);
-            break;
-        case "/":
-            sol(first, oper, second);
-            break;
-        case "*":
-            sol(first, oper, second);
-            break;
-    }
 }
 
 backBtn.addEventListener("click", e => {
@@ -158,7 +141,7 @@ document.addEventListener("keydown", e => {
         let oper = operator.textContent;
         let secondParam = secondArg.textContent;
         if (secondParam == "") return;
-        solve(firstParam, oper, secondParam);
+        sol(firstParam, oper, secondParam);
     }
 
     if (e.code === "Backspace") {
