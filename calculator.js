@@ -59,10 +59,10 @@ equalBtn.addEventListener("click", e => {
 })
 
 const solObj = {
-    "-": (a, b) => a - b,
-    "+": (a, b) => a + b,
-    "/": (a, b) => a / b,
-    "*": (a, b) => a * b,
+    "-": (a, b) => +a - +b,
+    "+": (a, b) => +a + +b,
+    "/": (a, b) => +a / +b,
+    "*": (a, b) => +a * +b,
 }
 
 function sol(first, oper, second){
