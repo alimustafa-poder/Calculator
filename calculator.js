@@ -58,13 +58,20 @@ equalBtn.addEventListener("click", e => {
     solve(firstParam, oper, secondParam);
 })
 
+const solObj = {
+    "-": (a, b) => a - b,
+    "+": (a, b) => a + b,
+    "/": (a, b) => a / b,
+    "*": (a, b) => a * b,
+}
+
 function sol(first, oper, second){
     if (first < 1 || second < 1) {
-        firstArg.innerHTML = `${((Number(first) - Number(second)))}`;
+        firstArg.innerHTML = solObj[oper](first, second);
         operator.textContent = "";
         secondArg.textContent = "";
     } else {
-        firstArg.innerHTML = `${((Number(first) - Number(second)))}`;
+        firstArg.innerHTML = solObj[oper](first, second);
         operator.textContent = "";
         secondArg.textContent = "";
     }
