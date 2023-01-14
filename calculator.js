@@ -58,7 +58,7 @@ equalBtn.addEventListener("click", e => {
     solve(firstParam, oper, secondParam);
 })
 
-function solution(first, oper, second){
+function sol(first, oper, second){
     if (first < 1 || second < 1) {
         firstArg.innerHTML = `${((Number(first) - Number(second)))}`;
         operator.textContent = "";
@@ -74,16 +74,16 @@ function solution(first, oper, second){
 function solve(first, oper, second) {
     switch (oper) {
         case "-":
-            solution(first, oper, second);
+            sol(first, oper, second);
             break;
         case "+":
-            solution(first, oper, second);
+            sol(first, oper, second);
             break;
         case "/":
-            solution(first, oper, second);
+            sol(first, oper, second);
             break;
         case "*":
-            solution(first, oper, second);
+            sol(first, oper, second);
             break;
     }
 }
